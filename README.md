@@ -22,3 +22,45 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+# データベース設計
+
+## users
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+### Association
+has_many :messeages
+has_many :groups, through: :users_groups
+
+
+## groups
+|Column|Type|Options|
+|------|----|-------|
+|team|string|null: false|
+|user_id|integer|null: false, foreign_key: true|
+### Association
+has_many :users, through: :users_groups
+has_many :comments
+
+## users_groups
+|Column|Type|Options|
+|------|----|-------|
+|users_id|integer|null: false, foreign_key: true|
+|groups_id|integer|null: false, foreign_key: true|
+
+
+## messages
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|image|string|
+|date|datetime|
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
+### Association
+belongs_to :user
+belongs_to :group
