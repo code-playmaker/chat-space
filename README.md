@@ -34,8 +34,8 @@ Things you may want to cover:
 |password|string|null: false|
 ### Association
 has_many :messeages
-has_many :groups, through: :users_groups
-
+has_many :groups, through: :authorizations
+has_many :authorizations
 
 ## groups
 |Column|Type|Options|
@@ -43,15 +43,18 @@ has_many :groups, through: :users_groups
 |team|string|null: false|
 |user_id|integer|null: false, foreign_key: true|
 ### Association
-has_many :users, through: :users_groups
+has_many :users, through: :authorizations
+has_many :authorizations
 has_many :comments
 
-## users_groups
+## authorizations
 |Column|Type|Options|
 |------|----|-------|
 |users_id|integer|null: false, foreign_key: true|
 |groups_id|integer|null: false, foreign_key: true|
-
+### Association
+belongs_to :user
+belongs_to :group
 
 ## messages
 |Column|Type|Options|
