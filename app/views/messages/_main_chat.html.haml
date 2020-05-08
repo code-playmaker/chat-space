@@ -1,0 +1,26 @@
+.main-chat
+  .main-chat__group-info
+    .main-chat__group-info__top-items
+      .main-chat__group-info__top-items--group-name
+        test
+      = link_to "#", class: "main-chat__group-info__top-items--edit-button" do
+        edit
+    .main-chat__group-info--group-member-list
+      Member: playmaker
+  .main-chat__message-list
+    .main-chat__message-list__data
+      .main-chat__message-list__data--name
+        playmaker
+      .main-chat__message-list__data--date
+        2020/5/7(thr)11:36:00
+    .main-chat__message-list--latest-message
+      おはよう
+  .main-chat__message-form
+    .main-chat__message-form__bar
+      .main-chat__message-form__bar--message-content
+        type a message
+      %label{class: "main-chat__message-form__bar--picture"}
+        %input{type: "file", class: "main-chat__message-form__bar--picture--content"}
+        = icon('far fa-image', class: "main-chat__message-form__bar--picture--image")
+    .main-chat__message-form--send-bottom
+      Send
