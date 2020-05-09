@@ -2,8 +2,8 @@
   .main-chat__group-info
     .main-chat__group-info__top-items
       .main-chat__group-info__top-items--group-name
-        test
-      = link_to "#", class: "main-chat__group-info__top-items--edit-button" do
+        = current_group.name
+      = link_to localhost:3000/groups/1/edit, class: "main-chat__group-info__top-items--edit-button" do
         edit
     .main-chat__group-info--group-member-list
       Member: playmaker
