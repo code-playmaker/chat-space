@@ -2,25 +2,20 @@
   .main-chat__group-info
     .main-chat__group-info__top-items
       .main-chat__group-info__top-items--group-name
-        = current_group.name
-      = link_to localhost:3000/groups/1/edit, class: "main-chat__group-info__top-items--edit-button" do
+        = @group.name
+      = link_to edit_group_path(@group), class: "main-chat__group-info__top-items--edit-button" do
         edit
     .main-chat__group-info--group-member-list
-      Member: playmaker
+      Member: 
+      - @group.users.each do |user|
+        = user.name
   .main-chat__message-list
-    .main-chat__message-list__data
-      .main-chat__message-list__data--name
-        playmaker
-      .main-chat__message-list__data--date
-        2020/5/7(thr)11:36:00
-    .main-chat__message-list--latest-message
-      おはよう
-  .main-chat__message-form
-    .main-chat__message-form__bar
-      .main-chat__message-form__bar--message-content
-        type a message
-      %label{class: "main-chat__message-form__bar--picture"}
-        %input{type: "file", class: "main-chat__message-form__bar--picture--content"}
-        = icon('far fa-image', class: "main-chat__message-form__bar--picture--image")
-    .main-chat__message-form--send-bottom
-      Send
+    = render @messages
+  .main-chat__form
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'main-chat__form__message', placeholder: 'type a message'
+      .main-chat__form__mask
+        = f.label :image, class: 'main-chat__form__mask__image' do
+          = icon('fas', 'image', class: 'main-chat__form__mask__image--icon')
+          = f.file_field :image, class: 'main-chat__form__mask__image--hidden'
+      = f.submit 'Send', class: 'main-chat__form__send'
