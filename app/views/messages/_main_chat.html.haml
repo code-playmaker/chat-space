@@ -12,7 +12,7 @@
   .main-chat__message-list
     = render @messages
   .main-chat__form
-    = form_for [@group, @message] do |f|
+    = form_for [@group, @message], id: "new_message" do |f|
       = f.text_field :content, class: 'main-chat__form__message', placeholder: 'type a message'
       .main-chat__form__mask
         = f.label :image, class: 'main-chat__form__mask__image' do
